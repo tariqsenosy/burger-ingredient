@@ -5,6 +5,9 @@ This is a Laravel-based web application for managing burger orders, ingredients,
 
 ## Getting Started
 
+### Database Design 
+![Database Diagram](db-design.png)
+
 ### Prerequisites
 
 - PHP 8.0 or higher
