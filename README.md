@@ -19,15 +19,14 @@ The project follows the principles of Clean Architecture, separating concerns in
 
 ### Repository Design Pattern
 
-The repository design pattern is employed to abstract the data access layer from the rest of the application. This pattern involves creating a set of classes that handle the interaction with the database. By using repositories, the application's core logic remains independent of the specific database technology, making it easier to switch to a different storage solution if needed. Additionally, the repository pattern facilitates unit testing by allowing the substitution of mock repositories in tests.
+The repository design pattern is utilized to separate the data access layer from the application's core logic. This involves creating dedicated classes responsible for database interactions. By employing repositories, the application gains independence from the underlying database technology, facilitating easier transitions to alternative storage solutions. Furthermore, the repository pattern promotes effective unit testing by enabling the use of mock repositories in testing scenarios.
 
-### Notifications
 
-The system includes a notification mechanism that triggers email alerts when ingredient stock levels fall below certain thresholds. These thresholds can be configured in a separate table to allow for dynamic adjustments.
+### Mail notifications
 
-### Mail Queue, Jobs, and Events
+To improve application performance and responsiveness, email notifications are asynchronously processed using Laravel's mail queue, jobs, and events. When the ingredient stock falls below a specified percentage, an event is triggered. This event is linked to a job responsible for sending the email. Additionally, this approach enhances scalability, enabling the system to efficiently manage a high volume of orders and notifications.
 
-To enhance the performance and responsiveness of the application, email notifications are processed asynchronously using Laravel's mail queue, jobs, and events. When the stock of an ingredient falls below a specified percentage, an event is fired. This event is then associated with a job that handles the actual sending of the email. By utilizing queues and jobs, the application can offload time-consuming tasks, ensuring a smoother user experience. This approach also enhances scalability by allowing the application to handle a large number of orders and notifications efficiently.
+## Getting Started
 
 ### Prerequisites
 
