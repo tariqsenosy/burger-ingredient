@@ -34,6 +34,8 @@ To improve application performance and responsiveness, email notifications are a
 
 In the codebase, you will find the use of `DB::transaction` for certain operations, specifically in the `placeOrder` method. This usage is intentional and serves the following purposes:
 
+![Database Transction](images/db-trans.png)
+
 #### Performance Optimization
 
 The `DB::transaction` method is employed to encapsulate a series of database operations within a single transaction. This approach enhances performance by minimizing the number of commits and rollbacks, especially when dealing with multiple database updates.
