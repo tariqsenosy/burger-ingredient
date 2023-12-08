@@ -30,6 +30,23 @@ The repository design pattern is utilized to separate the data access layer from
 To improve application performance and responsiveness, email notifications are asynchronously processed using Laravel's mail queue, jobs, and events. When the ingredient stock falls below a specified percentage, an event is triggered. This event is linked to a job responsible for sending the email. Additionally, this approach enhances scalability, enabling the system to efficiently manage a high volume of orders and notifications.
 ![Queue and Jobs](images/laravel-queues-how-it-works.png)
 
+### Usage of DB::transaction for Performance
+
+In the codebase, you will find the use of `DB::transaction` for certain operations, specifically in the `placeOrder` method. This usage is intentional and serves the following purposes:
+
+#### Performance Optimization
+
+The `DB::transaction` method is employed to encapsulate a series of database operations within a single transaction. This approach enhances performance by minimizing the number of commits and rollbacks, especially when dealing with multiple database updates.
+
+#### Atomic Operations
+
+Inside the transaction, multiple database operations are performed. If any of these operations fail and an exception is thrown, the entire transaction will be rolled back, ensuring that the database remains in a consistent state.
+
+#### Avoiding Rollbacks for Stock Deductions
+
+To optimize the deduction of stock from ingredients, a `CASE` statement is utilized within the transaction. This allows for a single SQL query to update multiple rows in a batch, improving efficiency. Additionally, this approach helps avoid partial stock updates, as the entire transaction is rolled back in case of any insufficient stock scenario.
+
+
 ## Getting Started
 
 ### Prerequisites
